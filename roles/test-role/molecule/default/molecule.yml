@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: centos7
+    image: docker.io/pycontribs/centos:7
+    command: ${MOLECULE_DOCKER_COMMAND}
+    pre_build_image: true
+  - name: ubuntu_latest
+    image: docker.io/pycontribs/ubuntu:latest
+    pre_build_image: true
+provisioner:
+  name: ansible
+  options:
+    vvv: true
+verifier:
+  name: ansible

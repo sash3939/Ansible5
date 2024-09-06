@@ -1,0 +1,4 @@
+---
+#clickhouse_version: '22.3.3.44'
+clickhouse_user: user
+clickhouse_password: password

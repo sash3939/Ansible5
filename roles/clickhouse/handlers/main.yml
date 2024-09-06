@@ -1,0 +1,6 @@
+---
+- name: 'Start clickhouse service'
+  become: true
+  set_fact:
+    clickhouse_service_ensure: "restarted"
+  listen: 'restart-ch'

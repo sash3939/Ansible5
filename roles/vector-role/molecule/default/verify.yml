@@ -1,0 +1,17 @@
+---
+- name: verify
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Check if vector is running
+      command: systemctl is-active vector
+      register: result
+      changed_when: false
+      failed_when: result.stdout != 'active'
+
+    - name: Check if Vector configuration is valid
+      command: vector validate /etc/vector/vector.toml
+      register: result
+      changed_when: false
+      failed_when: "'Conf ok' not in result.stdout"

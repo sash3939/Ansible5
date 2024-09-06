@@ -1,0 +1,39 @@
+---
+- block:
+    - name: Ensure necessary directories exist
+      ansible.builtin.file:
+        path: /home/ansible
+        state: directory
+
+    - name: Get clickhouse distrib
+      ansible.builtin.get_url:
+#        url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
+        url: "https://packages.clickhouse.com/rpm/stable/clickhouse-client-22.3.3.44.noarch.rpm"
+        dest: "/home/ansible/{{ item }}-{{ clickhouse_version }}.rpm"
+        mode: '0755'
+      with_items: "{{ clickhouse_packages }}"
+  rescue:
+    - name: Get clickhouse distrib
+      ansible.builtin.get_url:
+        url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.x86_64.rpm"
+        dest: "/home/ansible/{{ item }}-{{ clickhouse_version }}.rpm"
+        mode: '0644'
+      with_items: "{{ clickhouse_packages }}"
+- name: Install clickhouse packages
+  become: true
+  ansible.builtin.yum:
+    name:
+      - "/home/ansible/clickhouse-client-{{ clickhouse_version}}.rpm"
+      - "/home/ansible/clickhouse-common-static-{{ clickhouse_version }}.rpm"
+      - "/home/ansible/clickhouse-server-{{ clickhouse_version }}.rpm"
+    disable_gpg_check: false
+    state: present
+  notify: Start clickhouse service
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: Create database
+  ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
+  register: create_db
+  failed_when: create_db.rc != 0 and create_db.rc != 82
+  changed_when: create_db.rc == 0

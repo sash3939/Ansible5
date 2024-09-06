@@ -1,0 +1,8 @@
+galaxy_info:
+  author: Aleksandr Egorkin
+  description: role for install and configure Vector for Clickhouse
+  company:
+  role_name: my_name
+  namespace: my_galaxy_namespace
+  license: MIT
+  min_ansible_version: 2.10

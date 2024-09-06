@@ -1,0 +1,13 @@
+---
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: quay.io/centos/centos:stream8
+    pre_build_image: true
+  - name: instance-ubuntu
+    image: ubuntu:latest
+    pre_build_image: true
+  - name: instance-oraclelinux
+    image: oraclelinux:8
+    pre_build_image: true
