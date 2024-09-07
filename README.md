@@ -42,20 +42,36 @@
 [verify.yml](https://github.com/sash3939/Ansible5/blob/main/roles/test-role/molecule/default/verify.yml)
 
 5. Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
-  
-5. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 <img width="548" alt="Screen9" src="https://github.com/user-attachments/assets/dd018230-c249-427e-93ac-a2669a9c8976">
+
+6. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
+
+
 
 ### Tox
 
 1. Добавьте в директорию с vector-role файлы из [директории](./example).
 2. Запустите `docker run --privileged=True -v <path_to_repo>:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash`, где path_to_repo — путь до корня репозитория с vector-role на вашей файловой системе.
+
+<img width="695" alt="Screen10" src="https://github.com/user-attachments/assets/29dd5784-e42f-403c-9811-edd5268b73e8">
+   
 3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.
-5. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
-6. Пропишите правильную команду в `tox.ini`, чтобы запускался облегчённый сценарий.
-8. Запустите команду `tox`. Убедитесь, что всё отработало успешно.
-9. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
+
+<img width="553" alt="Screen11" src="https://github.com/user-attachments/assets/e207b03f-b4b8-47eb-8575-c37865a1cb58">
+  
+4. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
+5. Пропишите правильную команду в `tox.ini`, чтобы запускался облегчённый сценарий.
+
+<img width="406" alt="Screen13" src="https://github.com/user-attachments/assets/031ee681-3150-4960-91fc-10e40325e701">
+
+[tox.ini](https://github.com/sash3939/Ansible5/blob/main/roles/test-role/tox.ini)
+  
+6. Запустите команду `tox`. Убедитесь, что всё отработало успешно.
+
+<img width="566" alt="Screen12" src="https://github.com/user-attachments/assets/56d71e87-d4d0-48cd-af76-915139375719">
+ 
+7. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 После выполнения у вас должно получится два сценария molecule и один tox.ini файл в репозитории. Не забудьте указать в ответе теги решений Tox и Molecule заданий. В качестве решения пришлите ссылку на  ваш репозиторий и скриншоты этапов выполнения задания. 
 
